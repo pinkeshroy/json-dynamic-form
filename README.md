@@ -1,5 +1,3 @@
-# json-dynamic-form
-
 # JSON Dynamic Form
 
 A simple HTML page with plain JavaScript that dynamically renders a form based on a JSON configuration.  
