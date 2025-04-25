@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WIFY JSON form test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    form div {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="email"], input[type="tel"] {
+      padding: 6px;
+      width: 250px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>WIFY JSON form test</h2>
+  <form id="dynamicForm"></form>
+
+  <script>
+    const formFields = [
+      { "key": "user_name", "label": "Name", "type": "text", "maxLength": "50" },
+      { "key": "mobile_no", "label": "Mobile number", "type": "tel" },
+      { "key": "email", "label": "Email", "type": "email" }
+    ];
+
+    const form = document.getElementById('dynamicForm');
+
+    formFields.forEach(field => {
+      const fieldWrapper = document.createElement('div');
+
+      const label = document.createElement('label');
+      label.setAttribute('for', field.key);
+      label.textContent = field.label + ':';
+      fieldWrapper.appendChild(label);
+
+      const input = document.createElement('input');
+      input.type = field.type;
+      input.id = field.key;
+      input.name = field.key;
+
+      if (field.maxLength) {
+        input.maxLength = field.maxLength;
+      }
+
+      input.placeholder = 'Enter ' + field.label;
+      input.required = true;
+
+      fieldWrapper.appendChild(input);
+      form.appendChild(fieldWrapper);
+    });
+
+    const submitButton = document.createElement('button');
+    submitButton.type = 'submit';
+    submitButton.textContent = 'Submit';
+    form.appendChild(submitButton);
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      alert('Submitted successfully');
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
